@@ -1,6 +1,8 @@
 package com.snowden.giflib.controller;
 
+import com.snowden.giflib.data.GifRepository;
 import com.snowden.giflib.model.Gif;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 
 @Controller
 public class GifController {
+    @Autowired
+    private GifRepository gifRepository;
 
     @RequestMapping("/")
     public String listGifs() {
@@ -18,7 +22,7 @@ public class GifController {
 
     @RequestMapping("/gif")
     public String gifDetails(ModelMap modelMap) {
-        Gif gif = new Gif("android-explosion", LocalDate.of(2015,2,13),"padfoot7",true);
+        Gif gif = gifRepository.findByName("android-explosion");
         modelMap.put("gif", gif);
         return "gif-details";
     }
