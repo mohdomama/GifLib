@@ -38,6 +38,28 @@ public class GifRepository {
         return categoryGifs;
     }
 
+    public List<Gif> getAllFav() {
+        List<Gif> favGifs = new ArrayList<Gif>();
+        for (Gif gif : ALL_GIFS) {
+            if(gif.isFavorite()) {
+                favGifs.add(gif);
+            }
+        }
+
+        return favGifs;
+    }
+
+    public List<Gif> getSearchedGifs(String querry) {
+        List searchedGifs = new ArrayList<Gif>();
+        for (Gif gif : ALL_GIFS) {
+            if(gif.getName().contains(querry)) {
+                searchedGifs.add(gif);
+            }
+        }
+
+        return searchedGifs;
+    }
+
     public List<Gif> getAllGifs() {
         return ALL_GIFS;
     }
